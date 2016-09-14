@@ -30,7 +30,7 @@ public class Timesheet extends BaseEntity {
 	@JsonManagedReference
 	private Employee employee;
 	
-	@Column(name="e_id", insertable=false, updatable=false)
+	@Column(name="employee_id", insertable=false, updatable=false)
 //	@Transient
 	@JsonManagedReference
 	private Long employeeId;

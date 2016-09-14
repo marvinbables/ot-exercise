@@ -185,15 +185,16 @@
 			<button type="button" class="close" data-dismiss="modal">&times;</button>	
 			<h4 class="${add}"><spring:message code="label.dtr.add" /></h4>
 		</div>
-		<form:form modelAttribute="dtr" id="dtr-form">
+		<form:form modelAttribute="formCommand" id="dtr-form">
 			<div class="modal-body">
 				<div class="message-container"></div>
 				<!-- Define form fields here -->
-				<!-- <input type="datetime-local" name="timeIn">
-				<input type="datetime-local" name="timeOut">	 -->
 				
+				 <input type="datetime-local" name="timeIn">
+				<input type="datetime-local" name="timeOut">	
+				<!-- 
 				<input type="date" name="timeIn">
-				<input type="date" name="timeOut">	
+				<input type="date" name="timeOut">-->	
 				
 				<select id="timesheetSelect" name="timesheet"></select>
 			</div>
@@ -305,12 +306,18 @@
 					url : '${home}/dailyTimeRecord', // url
 					data : dtrInfo.serialize(), // data
 					success : function(json) { // callback
+						console.log("json");
+						console.log(json);
 						if (typeof (json.command) === 'object'
 							&& json.command.id > 0) {
 							$('#dtr-body').modal('hide');
 						}
 					},
-						dataType : 'json'
+					error: function(err) {
+						console.log("error");
+						console.log(err);	
+					},
+					dataType : 'json'
 				});
 			});
 			
